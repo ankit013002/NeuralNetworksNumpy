@@ -2,7 +2,10 @@ import sys
 import numpy as np
 import matplotlib
 
-inputs = [1, 2, 3, 2.5]
+inputs = [[1, 2, 3, 2.5],
+          [2.0,5.0,-1.0,2.0],
+          [-1.5,2.7,3.3,-0.8]
+        ]
 
 weights = [
   [0.2, 0.8, -0.5, 1.0],
@@ -12,13 +15,6 @@ weights = [
 
 biases = [2, 3, 0.5]
 
-outputLayer = []
-
-for neuron_weights, neuron_bias in zip(weights, biases):
-  neuron_output = 0
-  for input, weight in zip(inputs, neuron_weights):
-    neuron_output += weight * input
-  neuron_output += neuron_bias
-  outputLayer.append(neuron_output)
+outputLayer = np.dot(inputs, np.transpose(weights)) + biases
 
 print(outputLayer)
